@@ -17,9 +17,13 @@ int main()
     }
 
     //Was the loop exited with a break?
-    if (quitEarly == true) {
+    if (quitEarly == true) 
+    {
         puts("The loop was exited early");
     }
-
+    if (quitEarly == false)
+    {
+        puts("The loop cycle fully completed");
+    }
     puts("Done");
 }
