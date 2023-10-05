@@ -13,10 +13,9 @@ int main()
             printf("\tInner loop number %d\n", j);  // note the use of the tab (\t) option at the start to improve the layout
 
             //Task - Write another level of nesting here
-
             for (int k = 1; k <= 10; k++)
             {
-                printf("\t\tInner Inner lopp number %d\n", k);
+                printf("\t\ti,j,k\n ----- \n d%,d%,d%", i,j,k);
             }
         }
     }
