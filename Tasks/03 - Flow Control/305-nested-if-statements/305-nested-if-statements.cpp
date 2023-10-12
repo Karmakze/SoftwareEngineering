@@ -23,6 +23,7 @@ int main()
 
     // start filling the tank 
     int level = 5;
+    char refuel;
 
     //Read the keyboad to get the level
     //Repeat until a valid value has been added
@@ -37,9 +38,15 @@ int main()
         cout << "Tank needs filling ";
         if (level == 0) {
             cout << "urgently as you your tank is actually empty!" << endl;
+            cout << "Would you like to refuel it Y/N" << endl;
+            cin >> refuel;
+            cout << "tank refueled" << endl;
         }
         else {
             cout << "very soon as it is low" << endl;
+            cout << "Would you like to refuel it Y/N" << endl;
+            cin >> refuel;
+            cout << "tank refueled" << endl;
         }
     }
     else //Ok, it is > low, so do the following.....
