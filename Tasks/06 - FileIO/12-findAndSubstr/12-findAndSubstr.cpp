@@ -51,6 +51,7 @@ int main()
     cout << "Found " << strTag << endl;
     cout << "Followed by " << strCode << endl;
 
+
     //Conversion
     int code;
     try {
@@ -63,6 +64,25 @@ int main()
         cout << "That broke. Time for coffee" << endl;
         return -1;
     }
+
+    //find "Area:"
+    pos = dataString.find("Area:");
+    if (pos == -1) {
+        cerr << "identifier Area: is missing from file" << endl;
+        return -1;
+    }
+
+    following = dataString.substr(pos);
+
+    istringstream iss2(following);
+    iss2 >> strTag >> strCode;
+    if (iss2.fail()) {
+        cerr << "identifier ID: is mussing from file" << endl;
+        return -1;
+
+    }
+    cout << "found " << strTag << endl;
+    cout << "followed by " << strCode << endl;
 
     // Done
     cout << "All is well!" << endl;

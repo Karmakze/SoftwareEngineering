@@ -46,7 +46,19 @@ int main()
             cout << "Found \"ID:\". The code should be next...." << endl;
             //TODO:
             // Read the next word
+            iss >> nextWord; 
             // If successful, try to convert to an integer then break from the while loop
+            if (iss.fail()) {
+                cout << "ID not found where expected" << endl;
+                return -1;
+            }
+            else {
+                int moduleNumber = stoi(nextWord);
+                moduleNumber += 1;
+                cout << "THe new module name is COMP" << moduleNumber << endl;
+                break;
+
+            }
         }
     }
 

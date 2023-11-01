@@ -72,6 +72,8 @@ int main()
         cout << "Oops - could not find it" << endl;
     }
 
+    regex pattern("")
+
     // Done
     cout << "All is well!" << endl;
     return 0;

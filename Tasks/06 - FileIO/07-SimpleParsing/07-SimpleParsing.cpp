@@ -37,11 +37,13 @@ int main()
     string subjectArea;
     inputStream >> subjectArea;
 
-    //Display the result
-    cout << "Subject Area is " << subjectArea << endl;
+    for (unsigned int n = 0; n < 2; n++) {
+        inputStream >> nextWord;
+    }
 
-    int code;
-
+    int code; 
+    inputStream >> code; 
+    cout << "New Module code would be: " << subjectArea << code + 1 << endl;
     //TO DO: 
     // Now find the module ID number
     // Store it in the integer variable code
