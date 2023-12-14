@@ -11,16 +11,16 @@ namespace COMP1000 {
         double width;
         double height;
         double area;
-        string fileName;
-        ofstream outputStream;
+        string* fileName;
+        ofstream* outputStream;
 
     private:
         void updateArea() {
             //Recalculate
             area = width * height;
             //Log IF the file has been opened
-            if (outputStream.is_open()) {
-                outputStream << "width: " << width << ", height: " << height << ", area: " << area << endl;
+            if (outputStream->is_open()) {
+                *outputStream << "width: " << width << ", height: " << height << ", area: " << area << endl;
             }
         }
     public:
@@ -35,11 +35,20 @@ namespace COMP1000 {
         Rect(double w, double h, string id) {
             //Log message to terminal
             cout << "Constructor running for " << id << endl;
-
-            //Open file (for append if it exists)
-            fileName = id + ".log";
-            outputStream.open(fileName, ios::app);
-            if (!outputStream.is_open()) {
+            //
+            //Allocate memory
+            fileName = new string(id + ".log");
+            if (fileName) {
+                outputStream = new ofstream(*fileName);
+            }
+            
+            //Defensive stategy - even if unlikely
+            if (!fileName || !outputStream) {
+                throw exception("Out of memory");
+            }
+            //
+            outputStream->open(*fileName, ios::app);
+            if (!outputStream->is_open()) {
                 cerr << "Cannot create file " << fileName << endl;
                 throw exception("Cannot create file");
             }
@@ -65,12 +74,24 @@ namespace COMP1000 {
             cout << "Destructor running";
 
             //Only close a file if it has been opened
-            if (outputStream.is_open()) {
-                outputStream.close();
+            if (outputStream->is_open()) {
+                outputStream->close();
                 cout << " for " << fileName;
             }
             cout << endl;
+
+            //Free up memory
+            if (outputStream) {
+                delete outputStream;
+                outputStream = nullptr;
+            }
+            if (fileName) {
+                delete fileName;
+                fileName = nullptr;
+            }
         }
+
+
 
         //Setters and getters
         double getArea() {
@@ -94,7 +115,7 @@ namespace COMP1000 {
 
         // Output to terminal
         void display() {
-            if (outputStream.is_open()) {
+            if (outputStream->is_open()) {
                 cout << fileName << ", ";
             }
             cout << "Width: " << width << ", Height : " << height << ", Area : " << area << endl;

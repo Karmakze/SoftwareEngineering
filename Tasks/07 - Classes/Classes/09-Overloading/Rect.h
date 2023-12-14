@@ -23,7 +23,15 @@ namespace COMP1000 {
                 outputStream << "width: " << width << ", height: " << height << ", area: " << area << endl;
             }
         }
+    
     public:
+
+        void updateArea(int w, int h) {
+            height = h;
+            width = w;
+            updateArea();
+        }
+
         //Constructor - v1 (has an additional parameter used for file logging)
         Rect(double w, double h, string id) {
             //Log message to terminal
